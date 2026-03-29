@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <title>Rizky ♡ Faikah — Manado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pastel-pink': '#E5A4B3',
+                        'pastel-purple': '#BDA8D2',
+                        'pastel-blue': '#9CBFD9',
+                        'pastel-green': '#A6D5A8',
+                        'pastel-yellow': '#EFD9A1',
+                        'light-pink': '#F8E5E9',
+                        'dark-pink': '#C76F85',
+                        'ocean-blue': '#5BA4CF',
+                        'teal': '#6DC5C5'
+                    },
+                    fontFamily: {
+                        'pacifico': ['Pacifico', 'cursive'],
+                        'quicksand': ['Quicksand', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .photo-container { perspective: 1000px; }
+        .photo-card {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .photo-card.animate { opacity: 1; transform: translateY(0); }
+        .photo-card:hover { transform: rotateY(10deg) translateY(-10px); box-shadow: -15px 20px 25px rgba(0,0,0,0.1); }
+        .polaroid { position: relative; overflow: hidden; cursor: pointer; }
+        .polaroid::before { content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,255,255,0.25) 0%,rgba(255,255,255,0) 50%);z-index:2;pointer-events:none; }
+        .photo-shine { position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0) 60%);transform:translateX(-100%);transition:transform 0.6s;z-index:3;pointer-events:none; }
+        .polaroid:hover .photo-shine { transform: translateX(100%); }
+        .sticker { transition: all 0.3s ease; }
+        .sticker:hover { transform: rotate(10deg) scale(1.1); }
+        @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
+        @keyframes heartbeat { 0%{transform:scale(1)} 14%{transform:scale(1.1)} 28%{transform:scale(1)} 42%{transform:scale(1.15)} 70%{transform:scale(1)} }
+        @keyframes floatBg { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+        @keyframes overlayFadeOut { 0%{opacity:1;transform:scale(1)} 100%{opacity:0;transform:scale(1.04)} }
+        @keyframes glitter-move { 0%{background-position:0% 0%} 100%{background-position:200% 200%} }
+        @keyframes pulse-ring { 0%{box-shadow:0 6px 20px rgba(199,111,133,0.5),0 0 0 0 rgba(199,111,133,0.35)} 60%{box-shadow:0 6px 20px rgba(199,111,133,0.5),0 0 0 14px rgba(199,111,133,0)} 100%{box-shadow:0 6px 20px rgba(199,111,133,0.5),0 0 0 0 rgba(199,111,133,0)} }
+        @keyframes pulse-ring-playing { 0%{box-shadow:0 6px 24px rgba(189,168,210,0.7),0 0 0 0 rgba(189,168,210,0.5)} 60%{box-shadow:0 6px 24px rgba(189,168,210,0.7),0 0 0 18px rgba(189,168,210,0)} 100%{box-shadow:0 6px 24px rgba(189,168,210,0.7),0 0 0 0 rgba(189,168,210,0)} }
+        @keyframes floatHeart { 0%{transform:translateY(0) scale(1);opacity:1} 100%{transform:translateY(-70px) scale(0.4);opacity:0} }
+        @keyframes wave { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(1.3)} }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .heartbeat { animation: heartbeat 2s infinite; }
+        .heart-decoration { position:fixed;font-size:24px;color:#9CBFD9;opacity:0.6;z-index:-1;animation:float 3s infinite ease-in-out;pointer-events:none; }
+        .glitter-effect::after { content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(45deg,rgba(255,255,255,0) 70%,rgba(255,255,255,0.4) 75%,rgba(255,255,255,0) 80%);background-size:200% 200%;animation:glitter-move 5s infinite linear;pointer-events:none; }
+        .popup-overlay { position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.85);display:flex;justify-content:center;align-items:center;z-index:1000;opacity:0;visibility:hidden;transition:all 0.3s ease; }
+        .popup-overlay.active { opacity:1;visibility:visible; }
+        .popup-container { position:relative;max-width:90%;max-height:90%;transform:scale(0.9);transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); }
+        .popup-overlay.active .popup-container { transform:scale(1); }
+        .popup-image { max-width:100%;max-height:85vh;border-radius:10px;box-shadow:0 5px 30px rgba(0,0,0,0.3); }
+        .popup-close { position:absolute;top:-40px;right:0;width:40px;height:40px;background-color:#9CBFD9;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;color:white;font-size:20px;box-shadow:0 2px 10px rgba(0,0,0,0.2);transition:all 0.3s ease; }
+        .popup-close:hover { transform:rotate(90deg);background-color:#BDA8D2; }
+        .popup-caption { position:absolute;bottom:-60px;left:0;right:0;text-align:center;color:white;padding:10px;font-family:'Pacifico',cursive;font-size:18px;text-shadow:0 2px 4px rgba(0,0,0,0.5); }
+
+        /* Manado-themed date box — ocean blue */
+        .date-box {
+            background: linear-gradient(135deg, #9CBFD9 0%, #6DC5C5 100%);
+            border: 2px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            animation: float 6s infinite ease-in-out;
+        }
+        .date-box::before {
+            content:'';position:absolute;top:-5px;left:-5px;right:-5px;bottom:-5px;
+            border:2px dashed rgba(255,255,255,0.5);border-radius:15px;z-index:-1;
+        }
+
+        .button-hover { position:relative;overflow:hidden;transition:all 0.3s ease; }
+        .button-hover::after { content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.7s; }
+        .button-hover:hover::after { left:100%; }
+        .burst-heart { position:absolute;font-size:16px;animation:floatHeart 1.2s ease-out forwards;pointer-events:none; }
+        #music-btn.playing { background:linear-gradient(135deg,#BDA8D2,#C76F85);animation:pulse-ring-playing 1.8s ease-in-out infinite; }
+        #music-btn:hover { transform:scale(1.1); }
+        #password-overlay.fade-out { animation:overlayFadeOut 0.8s forwards; }
+
+        .back-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; color: #9CBFD9;
+            font-family: 'Quicksand', sans-serif; font-weight: 700;
+            font-size: 14px; padding: 8px 20px; border-radius: 50px;
+            border: 2px solid #9CBFD9; text-decoration: none;
+            transition: all 0.3s ease; box-shadow: 0 2px 10px rgba(156,191,217,0.2);
+        }
+        .back-btn:hover { background: #9CBFD9; color: white; transform: translateX(-3px); }
+
+        /* Empty state placeholder */
+        .photo-placeholder {
+            border: 2px dashed #9CBFD9;
+            border-radius: 12px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 320px; gap: 12px;
+            background: rgba(156,191,217,0.05);
+            color: #9CBFD9;
+        }
+    </style>
+</head>
+<body style="background-color:#EEF6FB;" class="font-quicksand">
+
+<!-- Music -->
+<audio id="background-music" loop><source src="forever.mp3" type="audio/mpeg"></audio>
+<div id="music-player" style="position:fixed;bottom:30px;right:30px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:8px;">
+    <div id="music-label" style="background:linear-gradient(135deg,rgba(91,164,207,0.92),rgba(109,197,197,0.92));color:white;font-family:'Quicksand',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.5px;padding:5px 14px;border-radius:20px;box-shadow:0 4px 15px rgba(91,164,207,0.4);white-space:nowrap;opacity:0;transform:translateY(5px);transition:opacity 0.4s ease,transform 0.4s ease;pointer-events:none;text-align:center;">🎵❤️</div>
+    <button id="music-btn" onclick="toggleMusic()" style="width:62px;height:62px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#5BA4CF,#6DC5C5);box-shadow:0 6px 20px rgba(91,164,207,0.5),0 0 0 0 rgba(91,164,207,0.4);display:flex;align-items:center;justify-content:center;font-size:22px;color:white;transition:transform 0.2s ease,box-shadow 0.3s ease;animation:pulse-ring 2.5s ease-in-out infinite;position:relative;outline:none;"><i id="music-icon" class="fas fa-play" style="margin-left:3px;"></i></button>
+    <div id="heart-burst" style="position:absolute;bottom:0;right:0;pointer-events:none;width:62px;height:62px;"></div>
+    <div id="play-music-text" style="color:#5BA4CF;font-family:'Pacifico',cursive;font-size:13px;letter-spacing:0.5px;pointer-events:none;white-space:nowrap;">♡ Play Music ♡</div>
+</div>
+<script>
+    var musicPlaying=false,heartInterval=null;
+    function toggleMusic(){var audio=document.getElementById('background-music');var btn=document.getElementById('music-btn');var icon=document.getElementById('music-icon');var label=document.getElementById('music-label');if(!musicPlaying){audio.play();musicPlaying=true;icon.className='fas fa-pause';document.getElementById('play-music-text').textContent='♡ Pause Music ♡';btn.classList.add('playing');label.style.opacity='1';label.style.transform='translateY(0)';heartInterval=setInterval(function(){var c=document.getElementById('heart-burst');var h=document.createElement('span');h.textContent=['❤','🌅','🌺','💙'][Math.floor(Math.random()*4)];h.className='burst-heart';h.style.color=['#5BA4CF','#9CBFD9','#6DC5C5','#BDA8D2'][Math.floor(Math.random()*4)];h.style.left=(Math.random()*44)+'px';h.style.bottom='62px';c.appendChild(h);setTimeout(function(){h.remove();},1300);},800);}else{audio.pause();musicPlaying=false;icon.className='fas fa-play';icon.style.marginLeft='3px';document.getElementById('play-music-text').textContent='♡ Play Music ♡';btn.classList.remove('playing');label.style.opacity='0';label.style.transform='translateY(5px)';if(heartInterval){clearInterval(heartInterval);heartInterval=null;}}}
+    document.getElementById('music-btn').addEventListener('mouseenter',function(){if(!musicPlaying){var l=document.getElementById('music-label');l.style.opacity='1';l.style.transform='translateY(0)';}});
+    document.getElementById('music-btn').addEventListener('mouseleave',function(){if(!musicPlaying){var l=document.getElementById('music-label');l.style.opacity='0';l.style.transform='translateY(5px)';}});
+</script>
+
+<!-- Decorations -->
+<div class="heart-decoration" style="top:10%;left:8%;">🌅</div>
+<div class="heart-decoration" style="top:25%;right:10%;animation-delay:0.5s;">🌺</div>
+<div class="heart-decoration" style="top:70%;left:12%;animation-delay:1s;">❤</div>
+<div class="heart-decoration" style="top:80%;right:15%;animation-delay:1.5s;">🐚</div>
+<div class="heart-decoration" style="top:40%;left:90%;animation-delay:2s;">🌅</div>
+
+<!-- Photo Popup -->
+<div class="popup-overlay" id="photoPopup">
+    <div class="popup-container">
+        <div class="popup-close" id="popupClose">&times;</div>
+        <img src="" alt="Enlarged photo" class="popup-image" id="popupImage">
+        <div class="popup-caption" id="popupCaption"></div>
+    </div>
+</div>
+
+<!-- Main -->
+<div class="container mx-auto px-4 py-8 max-w-6xl">
+
+    <!-- Back Button -->
+    <div class="mb-6 animate__animated animate__fadeIn">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Albums
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="text-center mb-10">
+        <img width="200" class="mx-auto mb-4 animate__animated animate__fadeIn" src="./images/cover.png" alt="Rizky & Faikah">
+        <h1 class="font-pacifico text-4xl md:text-6xl animate__animated animate__fadeIn" style="color:#5BA4CF;">Manado</h1>
+        <div class="flex justify-center items-center gap-2 mt-2 animate__animated animate__fadeIn animate__delay-1s">
+            <div class="h-0.5 w-16 rounded-full" style="background-color:#9CBFD9;"></div>
+            <p class="text-lg font-medium" style="color:#6DC5C5;">Sweet Memories</p>
+            <div class="h-0.5 w-16 rounded-full" style="background-color:#9CBFD9;"></div>
+        </div>
+    </header>
+
+    <!-- Date Box -->
+    <div class="relative mx-auto max-w-lg mb-12 animate__animated animate__fadeIn animate__delay-2s">
+        <div class="date-box relative p-5 rounded-lg text-center">
+            <h2 class="font-pacifico text-2xl text-white mb-1 drop-shadow-lg">🌅 Manado</h2>
+            <p class="text-white font-medium text-lg">27 Maret 2026</p>
+        </div>
+    </div>
+
+    <main>
+        <!-- Photo Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="photoGrid">
+
+                        <!-- Photo 1 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado1.jpg" alt="Manado 1" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-heart text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Welcome to Manado</h3>
+                            <p class="text-gray-700 mt-1 font-medium">A new city, a new chapter, the same heart that beats for you</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 2 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado2.jpg" alt="Manado 2" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-water text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Ocean of Love</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Like the sea, my love for you has no shore and no end</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 3 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado3.jpg" alt="Manado 3" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-star text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Just Us Two</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Every adventure is perfect as long as I'm with you</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 4 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado4.jpg" alt="Manado 4" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-umbrella-beach text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Golden Moments</h3>
+                            <p class="text-gray-700 mt-1 font-medium">With you, even ordinary moments turn into treasure</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 5 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado5.jpg" alt="Manado 5" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-camera text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Our Story</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Every picture of us tells a love story worth telling forever</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 6 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado6.jpg" alt="Manado 6" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-leaf text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Fresh Air & You</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Being with you feels like breathing fresh air for the very first time</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Fun!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 7 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado7.jpg" alt="Manado 7" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-moon text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Dreaming Together</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are the dream I never want to wake up from</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 8 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado8.jpg" alt="Manado 8" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-compass text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">My Direction</h3>
+                            <p class="text-gray-700 mt-1 font-medium">No matter where we go, home is wherever you are</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 9 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado9.jpg" alt="Manado 9" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-sun text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Sunshine & Smiles</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Your smile outshines every sunset I have ever seen</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 10 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado10.jpg" alt="Manado 10" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-anchor text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">My Anchor</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You ground me, you steady me, you are my forever anchor</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 11 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado11.jpg" alt="Manado 11" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-heart text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Written in the Sky</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Our names are written in the stars, side by side forever</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 12 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado12.jpg" alt="Manado 12" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-map-marker-alt text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Wherever With You</h3>
+                            <p class="text-gray-700 mt-1 font-medium">The destination doesn't matter; what matters is you're beside me</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Fun!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 13 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado13.jpg" alt="Manado 13" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-feather text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Gentle & Warm</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Your presence is the softest, most comforting thing I've ever felt</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 14 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado14.jpg" alt="Manado 14" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-infinity text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Forever & Always</h3>
+                            <p class="text-gray-700 mt-1 font-medium">A thousand lifetimes wouldn't be enough time spent with you</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 15 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado15.jpg" alt="Manado 15" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-water text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Riding the Waves</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Through every high and low, I want to face every wave with you</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 16 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado16.jpg" alt="Manado 16" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-hand-holding-heart text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Held in My Heart</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are the one I hold closest, in every moment, in every breath</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 17 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado17.jpg" alt="Manado 17" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-binoculars text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">My Favorite View</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Of all the beautiful views I've seen, you are still my favorite</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 18 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado18.jpg" alt="Manado 18" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-magic text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Pure Magic</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Being with you feels like living inside the most beautiful magic</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 19 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado19.jpg" alt="Manado 19" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-fish text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Deep as the Sea</h3>
+                            <p class="text-gray-700 mt-1 font-medium">My love for you runs deeper than any ocean could ever reach</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Fun!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 20 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado20.jpg" alt="Manado 20" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-heart text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Half of Me</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You complete me in ways I never knew I was missing</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 21 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado21.jpg" alt="Manado 21" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-cloud text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Head in the Clouds</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You make me feel like I'm floating, weightless and endlessly happy</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 22 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado22.jpg" alt="Manado 22" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-palette text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">You Color My World</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Before you, life was grey; now every day is painted beautifully</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 23 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado23.jpg" alt="Manado 23" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-book-open text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Our Love Story</h3>
+                            <p class="text-gray-700 mt-1 font-medium">This is my favorite story — the one where we find each other</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 24 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado24.jpg" alt="Manado 24" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-smile-beam text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">That Smile</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Your laugh is my favorite sound in the entire universe</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 25 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado25.jpg" alt="Manado 25" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-gem text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">My Precious</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are the rarest and most precious thing I have ever found</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 26 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado26.jpg" alt="Manado 26" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-praying-hands text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">A Blessing</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are the answer to a prayer I didn't even know I was making</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 27 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado27.jpg" alt="Manado 27" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-hand-holding text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Hand in Hand</h3>
+                            <p class="text-gray-700 mt-1 font-medium">As long as I have your hand in mine, I can face anything</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 28 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado28.jpg" alt="Manado 28" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-seedling text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Growing Together</h3>
+                            <p class="text-gray-700 mt-1 font-medium">With every day beside you, our love blooms more beautifully</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Fun!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 29 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado29.jpg" alt="Manado 29" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-music text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Our Song</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are the melody that plays softly in my heart every day</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 30 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado30.jpg" alt="Manado 30" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-trophy text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">My Greatest Win</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Of everything life has given me, you are my greatest treasure</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 31 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado31.jpg" alt="Manado 31" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-rocket text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">To The Moon</h3>
+                            <p class="text-gray-700 mt-1 font-medium">I love you to the moon and every star beyond it</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 32 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado32.jpg" alt="Manado 32" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-coffee text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Morning Bliss</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Waking up knowing you exist in my world is the best feeling</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 33 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado33.jpg" alt="Manado 33" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-eye text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Eyes on You</h3>
+                            <p class="text-gray-700 mt-1 font-medium">In a room full of people, my eyes will always find only you</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 34 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado34.jpg" alt="Manado 34" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-lock text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Locked In</h3>
+                            <p class="text-gray-700 mt-1 font-medium">My heart has chosen you, and there is no key to change that</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 35 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado35.jpg" alt="Manado 35" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-mountain text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">Peak Happiness</h3>
+                            <p class="text-gray-700 mt-1 font-medium">With you beside me, I have already reached the highest peak</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Fun!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 36 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado36.jpg" alt="Manado 36" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-globe-asia text-xl mr-3 mt-1" style="color:#5BA4CF;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">My Whole World</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are not just my love, you are my whole entire world</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#5BA4CF;">
+                            <span class="font-pacifico text-sm text-white">Sweet!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 37 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado37.jpg" alt="Manado 37" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-fire text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Still Burning</h3>
+                            <p class="text-gray-700 mt-1 font-medium">Every day that passes, I fall even more in love with you</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Lovely!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 38 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-teal rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado38.jpg" alt="Manado 38" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-ribbon text-xl mr-3 mt-1" style="color:#6DC5C5;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#6DC5C5;">A Gift to Me</h3>
+                            <p class="text-gray-700 mt-1 font-medium">You are the most wonderful gift life has ever handed me</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#6DC5C5;">
+                            <span class="font-pacifico text-sm text-white">Cute!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 39 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado39.jpg" alt="Manado 39" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-hourglass-half text-xl mr-3 mt-1" style="color:#BDA8D2;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#BDA8D2;">Time Stands Still</h3>
+                            <p class="text-gray-700 mt-1 font-medium">When I'm with you, I wish every second would last forever</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#BDA8D2;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 40 -->
+            <div class="photo-container relative">
+                <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
+                    <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
+                        <div class="w-full h-64 overflow-hidden">
+                            <img src="./images/manado40.jpg" alt="Manado 40" class="rounded w-full h-full object-cover">
+                            <div class="photo-shine"></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-heart text-xl mr-3 mt-1" style="color:#9CBFD9;"></i>
+                        <div>
+                            <h3 class="font-pacifico text-xl" style="color:#5BA4CF;">Until Forever</h3>
+                            <p class="text-gray-700 mt-1 font-medium">This is just the beginning of all the beautiful memories we'll make</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center -rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+                    <div class="mt-4 flex items-start">
+                        <i class="fas fa-heart text-pastel-blue text-xl mr-3 mt-1 heartbeat"></i>
+                       
+                    </div>
+                    <div class="absolute -top-3 -right-3 sticker">
+                        <div class="w-14 h-14 rounded-full flex items-center justify-center rotate-12" style="background-color:#9CBFD9;">
+                            <span class="font-pacifico text-sm text-white">Love!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Special Note -->
+        <div class="relative mx-auto max-w-2xl mb-16 mt-24 opacity-0" id="specialNote">
+            <div class="relative z-10 bg-white p-8 rounded-lg shadow-lg border-2 glitter-effect" style="border-color:#9CBFD9;">
+                <h2 class="font-pacifico text-3xl text-center mb-4" style="color:#5BA4CF;">A Note For You</h2>
+                <p class="text-gray-700 text-center leading-relaxed font-medium">
+                    Every new city we visit together becomes a new chapter of our love story.
+                    I can't wait to make beautiful memories with you in Manado. 🌅
+                    <span class="heartbeat" style="display:inline-block;color:#9CBFD9;margin:0 5px;">❤</span>
+                </p>
+                <div class="mt-6 text-center">
+                    <span class="inline-block font-pacifico text-xl" style="color:#BDA8D2;">With all my love,</span>
+                </div>
+                <div class="text-center mt-2">
+                    <span class="font-pacifico text-xl" style="color:#5BA4CF;">Your Sweetheart</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Albums -->
+        <div class="text-center mt-10 mb-8">
+            <a href="index.html" class="button-hover text-white font-medium py-3 px-10 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105 inline-flex items-center gap-2" style="background:linear-gradient(135deg,#5BA4CF,#6DC5C5);">
+                <i class="fas fa-images"></i>
+                <span>See All Albums</span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="text-center mt-10 mb-8">
+        <p class="text-gray-500 font-medium">Created with <i class="fas fa-heart heartbeat" style="color:#9CBFD9;"></i></p>
+    </footer>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var photoCards = document.querySelectorAll('.photo-card');
+        photoCards.forEach(function(card, index) {
+            card.style.transitionDelay = index * 0.15 + 's';
+            setTimeout(function() { card.classList.add('animate'); }, 500 + index * 150);
+        });
+
+        var specialNote = document.getElementById('specialNote');
+        specialNote.style.transform = 'translateY(30px)';
+        function handleScrollAnimations() {
+            var rect = specialNote.getBoundingClientRect();
+            if (rect.top <= window.innerHeight && rect.bottom >= 0 && specialNote.style.opacity !== '1') {
+                specialNote.style.transition = 'opacity 1s ease, transform 1s ease';
+                specialNote.style.opacity = '1';
+                specialNote.style.transform = 'translateY(0)';
+            }
+        }
+        handleScrollAnimations();
+        window.addEventListener('scroll', handleScrollAnimations);
+
+        var photoPopup = document.getElementById('photoPopup');
+        var popupImage = document.getElementById('popupImage');
+        var popupClose = document.getElementById('popupClose');
+        var popupCaption = document.getElementById('popupCaption');
+
+        document.querySelectorAll('.polaroid').forEach(function(polaroid) {
+            polaroid.addEventListener('click', function() {
+                var imgSrc = this.querySelector('img').src;
+                var card = this.closest('.photo-card');
+                var cardTitle = card.querySelector('h3') ? card.querySelector('h3').textContent : '';
+                var cardDesc = card.querySelector('p') ? card.querySelector('p').textContent : '';
+                popupImage.src = imgSrc;
+                popupCaption.textContent = cardTitle + (cardDesc ? ' - ' + cardDesc : '');
+                photoPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        popupClose.addEventListener('click', function() { photoPopup.classList.remove('active'); document.body.style.overflow = ''; });
+        photoPopup.addEventListener('click', function(e) { if (e.target === photoPopup) { photoPopup.classList.remove('active'); document.body.style.overflow = ''; } });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && photoPopup.classList.contains('active')) { photoPopup.classList.remove('active'); document.body.style.overflow = ''; } });
+    });
+</script>
+</body>
+</html>
