@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#C76F85">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Our Albums">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+    <link rel="manifest" href="./manifest.webmanifest">
     <title>Rizky ♡ Faikah — Tomohon</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/cloud-config.js"></script>
+    <script src="./assets/js/cloud-storage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/pwa.css">
+    <link rel="stylesheet" href="./assets/css/static-album-editor.css">
     <script>
         tailwind.config = {
             theme: {
@@ -170,7 +181,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon1.jpg" alt="Tomohon 1" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 1" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -194,7 +205,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon2.jpg" alt="Tomohon 2" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 2" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -218,7 +229,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon3.jpg" alt="Tomohon 3" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 3" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -242,7 +253,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon4.jpg" alt="Tomohon 4" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 4" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -266,7 +277,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon5.jpg" alt="Tomohon 5" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 5" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -290,7 +301,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon6.jpg" alt="Tomohon 6" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 6" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -314,7 +325,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon7.jpg" alt="Tomohon 7" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 7" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -338,7 +349,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon8.jpg" alt="Tomohon 8" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 8" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -362,7 +373,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon9.jpg" alt="Tomohon 9" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 9" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -386,7 +397,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon10.jpg" alt="Tomohon 10" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 10" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -410,7 +421,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon11.jpg" alt="Tomohon 11" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 11" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -434,7 +445,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon12.jpg" alt="Tomohon 12" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 12" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -458,7 +469,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon13.jpg" alt="Tomohon 13" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 13" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -482,7 +493,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon14.jpg" alt="Tomohon 14" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 14" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -506,7 +517,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon15.jpg" alt="Tomohon 15" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 15" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -530,7 +541,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon16.jpg" alt="Tomohon 16" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 16" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -554,7 +565,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon17.jpg" alt="Tomohon 17" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 17" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -578,7 +589,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon18.jpg" alt="Tomohon 18" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 18" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -602,7 +613,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon19.jpg" alt="Tomohon 19" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 19" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -626,7 +637,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon20.jpg" alt="Tomohon 20" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 20" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -650,7 +661,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon21.jpg" alt="Tomohon 21" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 21" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -674,7 +685,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon22.jpg" alt="Tomohon 22" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 22" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -698,7 +709,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon23.jpg" alt="Tomohon 23" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 23" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -722,7 +733,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon24.jpg" alt="Tomohon 24" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 24" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -746,7 +757,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon25.jpg" alt="Tomohon 25" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 25" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -770,7 +781,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon26.jpg" alt="Tomohon 26" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 26" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -794,7 +805,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon27.jpg" alt="Tomohon 27" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 27" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -818,7 +829,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon28.jpg" alt="Tomohon 28" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 28" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -842,7 +853,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon29.jpg" alt="Tomohon 29" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 29" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -866,7 +877,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon30.jpg" alt="Tomohon 30" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 30" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -890,7 +901,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon31.jpg" alt="Tomohon 31" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 31" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -914,7 +925,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon32.jpg" alt="Tomohon 32" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 32" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -938,7 +949,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon33.jpg" alt="Tomohon 33" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 33" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -962,7 +973,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon34.jpg" alt="Tomohon 34" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 34" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -986,7 +997,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon35.jpg" alt="Tomohon 35" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 35" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1010,7 +1021,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon36.jpg" alt="Tomohon 36" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/1.jpg" alt="Tomohon 36" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1034,7 +1045,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon37.jpg" alt="Tomohon 37" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2.jpg" alt="Tomohon 37" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1058,7 +1069,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-sage rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon38.jpg" alt="Tomohon 38" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/2ori.jpg" alt="Tomohon 38" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1082,7 +1093,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon39.jpg" alt="Tomohon 39" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/4%20ori.jpg" alt="Tomohon 39" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1106,7 +1117,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/tomohon40.jpg" alt="Tomohon 40" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/6%20ori.jpg" alt="Tomohon 40" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1203,5 +1214,12 @@
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && photoPopup.classList.contains('active')) { photoPopup.classList.remove('active'); document.body.style.overflow = ''; } });
     });
 </script>
+<script src="./assets/js/pwa.js"></script>
+<script src="./assets/js/static-album-editor.js"></script>
 </body>
 </html>
+
+
+
+
+

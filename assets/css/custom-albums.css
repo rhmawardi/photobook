@@ -1,0 +1,424 @@
+.custom-album-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 24px auto 0;
+}
+
+.create-album-btn,
+.album-action-btn,
+.photo-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 800;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.create-album-btn {
+    min-height: 46px;
+    padding: 12px 22px;
+    color: #fff;
+    background: linear-gradient(135deg, #C76F85, #BDA8D2);
+    box-shadow: 0 8px 24px rgba(199,111,133,0.28);
+}
+
+.create-album-btn:hover,
+.album-action-btn:hover,
+.photo-action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.custom-album-hint {
+    width: 100%;
+    margin: 4px 0 0;
+    color: #9a6576;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.custom-albums-section {
+    margin: -18px 0 56px;
+}
+
+.custom-albums-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 24px;
+    color: #C76F85;
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+}
+
+.custom-album-empty {
+    display: none;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 22px;
+    border: 2px dashed rgba(199,111,133,0.24);
+    border-radius: 18px;
+    color: #986070;
+    background: rgba(255,255,255,0.55);
+    text-align: center;
+    font-weight: 700;
+}
+
+.custom-album-empty.is-visible {
+    display: block;
+}
+
+.custom-album-card .album-collage {
+    background: linear-gradient(135deg, #ffe5ec, #e9ddff 54%, #dff4ff);
+}
+
+.custom-collage-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(199,111,133,0.88);
+    font-family: 'Pacifico', cursive;
+    font-size: 24px;
+    text-align: center;
+}
+
+.custom-album-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background: rgba(82, 48, 61, 0.38);
+    backdrop-filter: blur(10px);
+}
+
+.custom-album-modal.is-visible {
+    display: flex;
+}
+
+.custom-album-dialog {
+    width: min(980px, 100%);
+    max-height: min(88vh, 920px);
+    overflow: hidden;
+    border: 1px solid rgba(199,111,133,0.24);
+    border-radius: 22px;
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 24px 80px rgba(86, 51, 63, 0.28);
+}
+
+.custom-album-modal-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 26px 18px;
+    border-bottom: 1px solid rgba(199,111,133,0.14);
+}
+
+.custom-album-modal-head h2 {
+    margin: 0;
+    color: #C76F85;
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+}
+
+.custom-album-modal-head p {
+    margin: 6px 0 0;
+    color: #8d5a69;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.custom-album-close {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    color: #C76F85;
+    background: #F8E5E9;
+    cursor: pointer;
+}
+
+.custom-album-modal-body {
+    max-height: calc(min(88vh, 920px) - 91px);
+    overflow: auto;
+    padding: 24px 26px 28px;
+}
+
+.custom-album-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.custom-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.custom-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.custom-field label {
+    color: #7c4b5a;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.custom-field input,
+.custom-field textarea {
+    width: 100%;
+    border: 1.5px solid #E5A4B3;
+    border-radius: 16px;
+    outline: none;
+    padding: 12px 14px;
+    color: #714556;
+    background: rgba(255,255,255,0.92);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}
+
+.custom-field textarea {
+    min-height: 88px;
+    resize: vertical;
+}
+
+.custom-upload-zone {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 150px;
+    border: 2px dashed rgba(199,111,133,0.34);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(248,229,233,0.74), rgba(232,213,240,0.52));
+    text-align: center;
+}
+
+.custom-upload-zone input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-upload-content {
+    display: grid;
+    gap: 8px;
+    color: #C76F85;
+    font-weight: 900;
+}
+
+.custom-upload-content i {
+    font-size: 28px;
+}
+
+.custom-upload-content small {
+    color: #9a6576;
+    font-size: 12px;
+}
+
+.custom-preview-grid,
+.custom-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.custom-preview-card,
+.custom-photo-card {
+    overflow: hidden;
+    border: 1px solid rgba(199,111,133,0.16);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 10px 26px rgba(122,74,88,0.1);
+}
+
+.custom-preview-card img,
+.custom-photo-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    background: #F8E5E9;
+}
+
+.custom-preview-card textarea,
+.custom-caption-input {
+    width: calc(100% - 20px);
+    min-height: 74px;
+    margin: 10px;
+    border: 1px solid rgba(199,111,133,0.32);
+    border-radius: 12px;
+    padding: 10px;
+    color: #714556;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    resize: vertical;
+}
+
+.custom-modal-actions,
+.custom-gallery-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+}
+
+.album-action-btn {
+    min-height: 42px;
+    padding: 10px 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #C76F85, #BDA8D2);
+    box-shadow: 0 8px 22px rgba(199,111,133,0.22);
+}
+
+.album-action-btn.secondary {
+    color: #C76F85;
+    background: #F8E5E9;
+    box-shadow: none;
+}
+
+.album-action-btn.danger,
+.photo-action-btn.danger {
+    color: #fff;
+    background: linear-gradient(135deg, #d35b76, #a94760);
+}
+
+.custom-photo-card-body {
+    padding: 12px;
+}
+
+.custom-caption-text {
+    min-height: 44px;
+    margin: 0 0 10px;
+    color: #6f4653;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.custom-photo-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.photo-action-btn {
+    min-height: 36px;
+    padding: 8px 12px;
+    color: #C76F85;
+    background: #F8E5E9;
+    font-size: 12px;
+}
+
+.custom-storage-note {
+    margin: 14px 0 0;
+    color: #9a6576;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+    .custom-album-toolbar {
+        margin-top: 20px;
+    }
+
+    .create-album-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .custom-album-modal {
+        padding: 10px;
+        align-items: stretch;
+    }
+
+    .custom-album-dialog {
+        max-height: calc(100vh - 20px);
+        border-radius: 18px;
+    }
+
+    .custom-album-modal-head {
+        padding: 18px 18px 14px;
+    }
+
+    .custom-album-modal-head h2 {
+        font-size: 24px;
+    }
+
+    .custom-album-modal-body {
+        max-height: calc(100vh - 105px);
+        padding: 18px;
+    }
+
+    .custom-album-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-preview-grid,
+    .custom-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-modal-actions,
+    .custom-gallery-actions {
+        justify-content: stretch;
+    }
+
+    .album-action-btn {
+        width: 100%;
+    }
+}
+
+.custom-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.custom-card-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.custom-album-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(135deg, #d35b76, #a94760);
+    box-shadow: 0 6px 18px rgba(169,71,96,0.28);
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .custom-card-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

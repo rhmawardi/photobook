@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#C76F85">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Our Albums">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+    <link rel="manifest" href="./manifest.webmanifest">
     <title>Rizky ♡ Faikah — Makassar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/cloud-config.js"></script>
+    <script src="./assets/js/cloud-storage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/pwa.css">
+    <link rel="stylesheet" href="./assets/css/static-album-editor.css">
     <script>
         tailwind.config = {
             theme: {
@@ -160,7 +171,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-pink rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo1.jpg" alt="Memory 1" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo1.jpg" alt="Memory 1" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -184,7 +195,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo2.jpg" alt="Memory 2" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo2.jpg" alt="Memory 2" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -208,7 +219,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo3.jpg" alt="Memory 3" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo3.jpg" alt="Memory 3" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -232,7 +243,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-green rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo4.jpg" alt="Memory 4" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo4.jpg" alt="Memory 4" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -256,7 +267,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-dark-pink rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo5.jpg" alt="Memory 5" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo5.jpg" alt="Memory 5" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -280,7 +291,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-yellow rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo6.jpg" alt="Memory 6" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo6.jpg" alt="Memory 6" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -304,7 +315,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-dark-pink rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo7.jpg" alt="Memory 7" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo7.jpg" alt="Memory 7" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -328,7 +339,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo8.jpg" alt="Memory 8" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo8.jpg" alt="Memory 8" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -352,7 +363,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-dark-pink rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/photo9.jpg" alt="Memory 9" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/photo9.jpg" alt="Memory 9" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -455,5 +466,11 @@
         });
     });
 </script>
+<script src="./assets/js/pwa.js"></script>
+<script src="./assets/js/static-album-editor.js"></script>
 </body>
 </html>
+
+
+
+

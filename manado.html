@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#C76F85">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Our Albums">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+    <link rel="manifest" href="./manifest.webmanifest">
     <title>Rizky ♡ Faikah — Manado</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/cloud-config.js"></script>
+    <script src="./assets/js/cloud-storage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/pwa.css">
+    <link rel="stylesheet" href="./assets/css/static-album-editor.css">
     <script>
         tailwind.config = {
             theme: {
@@ -184,7 +195,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado1.jpg" alt="Manado 1" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado1.jpg" alt="Manado 1" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -207,7 +218,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado2.jpg" alt="Manado 2" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado2.jpg" alt="Manado 2" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -230,7 +241,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado3.jpg" alt="Manado 3" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado3.jpg" alt="Manado 3" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -253,7 +264,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado4.jpg" alt="Manado 4" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado4.jpg" alt="Manado 4" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -276,7 +287,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado5.jpg" alt="Manado 5" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado5.jpg" alt="Manado 5" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -299,7 +310,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado6.jpg" alt="Manado 6" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado6.jpg" alt="Manado 6" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -322,7 +333,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado7.jpg" alt="Manado 7" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado7.jpg" alt="Manado 7" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -345,7 +356,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado8.jpg" alt="Manado 8" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado8.jpg" alt="Manado 8" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -368,7 +379,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado9.jpg" alt="Manado 9" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado9.jpg" alt="Manado 9" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -391,7 +402,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado10.jpg" alt="Manado 10" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado10.jpg" alt="Manado 10" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -414,7 +425,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado11.jpg" alt="Manado 11" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado11.jpg" alt="Manado 11" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -437,7 +448,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado12.jpg" alt="Manado 12" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado12.jpg" alt="Manado 12" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -460,7 +471,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado13.jpg" alt="Manado 13" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado13.jpg" alt="Manado 13" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -483,7 +494,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado14.jpg" alt="Manado 14" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado14.jpg" alt="Manado 14" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -506,7 +517,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado15.jpg" alt="Manado 15" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado15.jpg" alt="Manado 15" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -529,7 +540,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado16.jpg" alt="Manado 16" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado16.jpg" alt="Manado 16" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -552,7 +563,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado17.jpg" alt="Manado 17" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado17.jpg" alt="Manado 17" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -575,7 +586,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado18.jpg" alt="Manado 18" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado18.jpg" alt="Manado 18" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -598,7 +609,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado19.jpg" alt="Manado 19" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado19.jpg" alt="Manado 19" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -621,7 +632,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado20.jpg" alt="Manado 20" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado20.jpg" alt="Manado 20" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -644,7 +655,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado21.jpg" alt="Manado 21" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado21.jpg" alt="Manado 21" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -667,7 +678,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado22.jpg" alt="Manado 22" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado22.jpg" alt="Manado 22" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -690,7 +701,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado23.jpg" alt="Manado 23" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado23.jpg" alt="Manado 23" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -713,7 +724,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado24.jpg" alt="Manado 24" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado24.jpg" alt="Manado 24" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -736,7 +747,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado25.jpg" alt="Manado 25" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado25.jpg" alt="Manado 25" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -759,7 +770,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado26.jpg" alt="Manado 26" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado26.jpg" alt="Manado 26" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -782,7 +793,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado27.jpg" alt="Manado 27" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado27.jpg" alt="Manado 27" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -805,7 +816,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado28.jpg" alt="Manado 28" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado28.jpg" alt="Manado 28" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -828,7 +839,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado29.jpg" alt="Manado 29" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado29.jpg" alt="Manado 29" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -851,7 +862,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado30.jpg" alt="Manado 30" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado30.jpg" alt="Manado 30" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -874,7 +885,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado31.jpg" alt="Manado 31" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado31.jpg" alt="Manado 31" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -897,7 +908,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado32.jpg" alt="Manado 32" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado32.jpg" alt="Manado 32" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -920,7 +931,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado33.jpg" alt="Manado 33" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado33.jpg" alt="Manado 33" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -943,7 +954,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado34.jpg" alt="Manado 34" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado34.jpg" alt="Manado 34" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -966,7 +977,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado35.jpg" alt="Manado 35" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado35.jpg" alt="Manado 35" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -989,7 +1000,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-ocean-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado36.jpg" alt="Manado 36" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado36.jpg" alt="Manado 36" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1012,7 +1023,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado37.jpg" alt="Manado 37" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado37.jpg" alt="Manado 37" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1035,7 +1046,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-teal rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado38.jpg" alt="Manado 38" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado38.jpg" alt="Manado 38" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1058,7 +1069,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-purple rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado39.jpg" alt="Manado 39" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado39.jpg" alt="Manado 39" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1081,7 +1092,7 @@
                 <div class="photo-card bg-white rounded-lg p-4 shadow-lg">
                     <div class="polaroid bg-white p-2 border-2 border-pastel-blue rounded">
                         <div class="w-full h-64 overflow-hidden">
-                            <img src="./images/manado40.jpg" alt="Manado 40" class="rounded w-full h-full object-cover">
+                            <img loading="lazy" src="./images/manado40.jpg" alt="Manado 40" class="rounded w-full h-full object-cover">
                             <div class="photo-shine"></div>
                         </div>
                     </div>
@@ -1191,5 +1202,11 @@
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && photoPopup.classList.contains('active')) { photoPopup.classList.remove('active'); document.body.style.overflow = ''; } });
     });
 </script>
+<script src="./assets/js/pwa.js"></script>
+<script src="./assets/js/static-album-editor.js"></script>
 </body>
 </html>
+
+
+
+

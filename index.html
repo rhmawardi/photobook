@@ -3,295 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#C76F85">
+    <meta name="description" content="Rizky and Faikah photo album memories.">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Our Albums">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+    <link rel="manifest" href="./manifest.webmanifest">
     <title>Rizky ♡ Faikah — Our Albums</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets/js/cloud-config.js"></script>
+    <script src="./assets/js/cloud-storage.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'pastel-pink': '#E5A4B3',
-                        'pastel-purple': '#BDA8D2',
-                        'pastel-blue': '#9CBFD9',
-                        'pastel-green': '#A6D5A8',
-                        'pastel-yellow': '#EFD9A1',
-                        'light-pink': '#F8E5E9',
-                        'dark-pink': '#C76F85'
-                    },
-                    fontFamily: {
-                        'pacifico': ['Pacifico', 'cursive'],
-                        'quicksand': ['Quicksand', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.1); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.15); }
-            70% { transform: scale(1); }
-        }
-        @keyframes floatBg {
-            0%,100% { transform: translateY(0); }
-            50%      { transform: translateY(-16px); }
-        }
-        @keyframes overlayFadeOut {
-            0%   { opacity:1; transform:scale(1); }
-            100% { opacity:0; transform:scale(1.04); }
-        }
-        @keyframes pulse-ring {
-            0%   { box-shadow: 0 6px 20px rgba(199,111,133,0.5), 0 0 0 0 rgba(199,111,133,0.35); }
-            60%  { box-shadow: 0 6px 20px rgba(199,111,133,0.5), 0 0 0 14px rgba(199,111,133,0); }
-            100% { box-shadow: 0 6px 20px rgba(199,111,133,0.5), 0 0 0 0 rgba(199,111,133,0); }
-        }
-        @keyframes pulse-ring-playing {
-            0%   { box-shadow: 0 6px 24px rgba(189,168,210,0.7), 0 0 0 0 rgba(189,168,210,0.5); }
-            60%  { box-shadow: 0 6px 24px rgba(189,168,210,0.7), 0 0 0 18px rgba(189,168,210,0); }
-            100% { box-shadow: 0 6px 24px rgba(189,168,210,0.7), 0 0 0 0 rgba(189,168,210,0); }
-        }
-        @keyframes floatHeart {
-            0%   { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-70px) scale(0.4); opacity: 0; }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes shimmer {
-            0%   { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .float-animation { animation: float 3s ease-in-out infinite; }
-        .heartbeat { animation: heartbeat 2s infinite; }
-        .heart-decoration {
-            position: fixed;
-            font-size: 24px;
-            color: #C76F85;
-            opacity: 0.6;
-            z-index: -1;
-            animation: float 3s infinite ease-in-out;
-            pointer-events: none;
-        }
-        .burst-heart {
-            position: absolute;
-            font-size: 16px;
-            animation: floatHeart 1.2s ease-out forwards;
-            pointer-events: none;
-        }
-        #music-btn.playing {
-            background: linear-gradient(135deg, #BDA8D2, #C76F85);
-            animation: pulse-ring-playing 1.8s ease-in-out infinite;
-        }
-        #music-btn:hover { transform: scale(1.1); }
-
-        /* Album card styles */
-        .album-card {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .album-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .album-card-inner {
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
-            cursor: pointer;
-        }
-        .album-card-inner:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(199,111,133,0.25);
-        }
-
-        /* Photo collage thumbnail */
-        .album-collage {
-            position: relative;
-            width: 100%;
-            height: 290px;
-            overflow: hidden;
-            border-radius: 16px 16px 0 0;
-            background: linear-gradient(135deg, #fce4ec, #e8d5f0);
-        }
-        .album-collage-blue {
-            background: linear-gradient(135deg, #deeeff, #d5eef0);
-        }
-
-        /* Main large photo - left side */
-        .collage-main {
-            position: absolute;
-            left: 8px;
-            top: 8px;
-            width: calc(58% - 12px);
-            bottom: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.13);
-            transition: transform 0.4s ease;
-        }
-        .album-card-inner:hover .collage-main { transform: scale(1.03); }
-        .collage-main img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .album-card-inner:hover .collage-main img { transform: scale(1.06); }
-
-        /* Right side - 3 stacked small photos */
-        .collage-side {
-            position: absolute;
-            right: 8px;
-            top: 8px;
-            bottom: 8px;
-            width: calc(42% - 16px);
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        .collage-thumb {
-            flex: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-            transition: transform 0.4s ease;
-            position: relative;
-        }
-        .collage-thumb img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .album-card-inner:hover .collage-thumb { transform: scale(1.03); }
-        .album-card-inner:hover .collage-thumb img { transform: scale(1.07); }
-
-        /* More photos counter overlay */
-        .collage-more {
-            position: absolute;
-            inset: 0;
-            background: rgba(199, 111, 133, 0.72);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            font-family: 'Pacifico', cursive;
-            font-size: 18px;
-            letter-spacing: 0.5px;
-            backdrop-filter: blur(2px);
-        }
-        .collage-more-blue {
-            background: rgba(91, 164, 207, 0.72);
-        }
-        .collage-more span { font-size: 11px; font-family: 'Quicksand', sans-serif; font-weight: 700; margin-top: 2px; }
-
-        /* Location badge overlay on collage */
-        .collage-badge {
-            position: absolute;
-            bottom: 14px;
-            left: 14px;
-            z-index: 5;
-            background: rgba(255,255,255,0.93);
-            backdrop-filter: blur(6px);
-            border-radius: 50px;
-            padding: 5px 14px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            color: #C76F85;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-        }
-        .collage-badge-blue { color: #5BA4CF; }
-        .collage-badge-green { color: #4CAF50; }
-        .album-collage-green { background: linear-gradient(135deg, #d4edda, #c8e6c9); }
-        .collage-more-green { background: rgba(76, 175, 80, 0.72); }
-
-        /* Coming soon placeholder grid */
-        .collage-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 8px;
-            color: #9CBFD9;
-        }
-
-        .coming-soon-overlay {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .coming-soon-badge {
-            background: linear-gradient(135deg, #5BA4CF, #6DC5C5);
-            color: white;
-            font-family: 'Pacifico', cursive;
-            font-size: 16px;
-            padding: 10px 22px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(91,164,207,0.5);
-            letter-spacing: 0.5px;
-        }
-
-        .open-album-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #C76F85, #BDA8D2);
-            color: white;
-            font-family: 'Pacifico', cursive;
-            font-size: 14px;
-            padding: 10px 24px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(199,111,133,0.35);
-            text-decoration: none;
-        }
-        .open-album-btn:hover {
-            box-shadow: 0 6px 22px rgba(199,111,133,0.55);
-            transform: scale(1.04);
-        }
-        .date-box {
-            background: linear-gradient(135deg, #E5A4B3 0%, #BDA8D2 100%);
-            border: 2px solid white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            animation: float 6s infinite ease-in-out;
-        }
-        #password-overlay.fade-out {
-            animation: overlayFadeOut 0.8s forwards;
-        }
-        .button-hover {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .button-hover::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.7s;
-        }
-        .button-hover:hover::after { left: 100%; }
-    </style>
+    <script src="./assets/js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/custom-albums.css">
+    <link rel="stylesheet" href="./assets/css/album-delete.css">
 </head>
 <body class="bg-light-pink font-quicksand">
 
@@ -339,33 +70,26 @@
     <p style="margin-top:24px;font-size:12px;color:rgba(199,111,133,0.6);font-family:'Pacifico',cursive;letter-spacing:0.5px;">made with ❤</p>
 </div>
 
-<script>
-    function checkPassword() {
-        var input = document.getElementById('pw-input').value;
-        var error = document.getElementById('pw-error');
-        if (input === 'rizkyfaikah26') {
-            var overlay = document.getElementById('password-overlay');
-            overlay.classList.add('fade-out');
-            setTimeout(function() { overlay.style.display = 'none'; }, 800);
-        } else {
-            error.style.opacity = '1';
-            document.getElementById('pw-input').style.border = '1.5px solid #e05a7a';
-            setTimeout(function() {
-                error.style.opacity = '0';
-                document.getElementById('pw-input').style.border = '1.5px solid #E5A4B3';
-            }, 2000);
-        }
-    }
-    function togglePwVisibility() {
-        var input = document.getElementById('pw-input');
-        var icon  = document.getElementById('eye-icon');
-        if (input.type === 'password') { input.type = 'text'; icon.textContent = '🙈'; }
-        else { input.type = 'password'; icon.textContent = '👁'; }
-    }
-</script>
+<!-- Install App -->
+<button id="install-app-btn" type="button" aria-label="Install app">
+    <i class="fas fa-download"></i>
+    <span>Install App</span>
+</button>
+
+<div id="ios-install-tip" aria-hidden="true">
+    <div class="ios-install-card" role="dialog" aria-modal="true" aria-labelledby="ios-install-title">
+        <button id="ios-install-close" type="button" aria-label="Close install instructions">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="ios-install-icon">♡</div>
+        <h2 id="ios-install-title">Install di iPhone</h2>
+        <p>Tap tombol Share di Safari, lalu pilih <strong>Add to Home Screen</strong>.</p>
+    </div>
+</div>
+
 
 <!-- Background Music -->
-<audio id="background-music" loop>
+<audio id="background-music" loop preload="none">
     <source src="forever.mp3" type="audio/mpeg">
 </audio>
 
@@ -379,45 +103,6 @@
     <div id="play-music-text" style="color:#C76F85;font-family:'Pacifico',cursive;font-size:13px;letter-spacing:0.5px;text-shadow:0 1px 6px rgba(199,111,133,0.3);pointer-events:none;white-space:nowrap;">♡ Play Music ♡</div>
 </div>
 
-<script>
-    var musicPlaying = false, heartInterval = null;
-    function toggleMusic() {
-        var audio = document.getElementById('background-music');
-        var btn = document.getElementById('music-btn');
-        var icon = document.getElementById('music-icon');
-        var label = document.getElementById('music-label');
-        if (!musicPlaying) {
-            audio.play(); musicPlaying = true;
-            icon.className = 'fas fa-pause';
-            document.getElementById('play-music-text').textContent = '♡ Pause Music ♡';
-            btn.classList.add('playing');
-            label.style.opacity = '1'; label.style.transform = 'translateY(0)';
-            heartInterval = setInterval(function(){
-                var container = document.getElementById('heart-burst');
-                var heart = document.createElement('span');
-                heart.textContent = ['❤','💕','✿','♡'][Math.floor(Math.random()*4)];
-                heart.className = 'burst-heart';
-                heart.style.color = ['#C76F85','#E5A4B3','#BDA8D2','#FF9FB3'][Math.floor(Math.random()*4)];
-                heart.style.left = (Math.random()*44)+'px'; heart.style.bottom = '62px';
-                container.appendChild(heart);
-                setTimeout(function(){ heart.remove(); }, 1300);
-            }, 800);
-        } else {
-            audio.pause(); musicPlaying = false;
-            icon.className = 'fas fa-play'; icon.style.marginLeft = '3px';
-            document.getElementById('play-music-text').textContent = '♡ Play Music ♡';
-            btn.classList.remove('playing');
-            label.style.opacity = '0'; label.style.transform = 'translateY(5px)';
-            if (heartInterval) { clearInterval(heartInterval); heartInterval = null; }
-        }
-    }
-    document.getElementById('music-btn').addEventListener('mouseenter', function() {
-        if (!musicPlaying) { var l=document.getElementById('music-label'); l.style.opacity='1'; l.style.transform='translateY(0)'; }
-    });
-    document.getElementById('music-btn').addEventListener('mouseleave', function() {
-        if (!musicPlaying) { var l=document.getElementById('music-label'); l.style.opacity='0'; l.style.transform='translateY(5px)'; }
-    });
-</script>
 
 <!-- Heart Decorations -->
 <div class="heart-decoration" style="top:10%;left:8%;color:#C76F85;">❤</div>
@@ -454,18 +139,18 @@
                     <div class="album-collage">
                         <!-- Main large photo -->
                         <div class="collage-main">
-                            <img src="./images/photo1.jpg" alt="Makassar 1">
+                            <img src="./images/photo1.jpg" alt="Makassar 1" loading="lazy">
                         </div>
                         <!-- Right: 3 small photos -->
                         <div class="collage-side">
                             <div class="collage-thumb">
-                                <img src="./images/photo2.jpg" alt="Makassar 2">
+                                <img src="./images/photo2.jpg" alt="Makassar 2" loading="lazy">
                             </div>
                             <div class="collage-thumb">
-                                <img src="./images/photo4.jpg" alt="Makassar 4">
+                                <img src="./images/photo4.jpg" alt="Makassar 4" loading="lazy">
                             </div>
                             <div class="collage-thumb" style="position:relative;">
-                                <img src="./images/photo6.jpg" alt="Makassar 6">
+                                <img src="./images/photo6.jpg" alt="Makassar 6" loading="lazy">
                                 <!-- "+5 more" overlay on last thumb -->
                                 <div class="collage-more">
                                     +5
@@ -508,18 +193,18 @@
                     <div class="album-collage album-collage-blue">
                         <!-- Main large photo -->
                         <div class="collage-main">
-                            <img src="./images/manado1.jpg" alt="Manado 1">
+                            <img src="./images/manado1.jpg" alt="Manado 1" loading="lazy">
                         </div>
                         <!-- Right: 3 small photos -->
                         <div class="collage-side">
                             <div class="collage-thumb">
-                                <img src="./images/manado2.jpg" alt="Manado 2">
+                                <img src="./images/manado2.jpg" alt="Manado 2" loading="lazy">
                             </div>
                             <div class="collage-thumb">
-                                <img src="./images/manado3.jpg" alt="Manado 3">
+                                <img src="./images/manado3.jpg" alt="Manado 3" loading="lazy">
                             </div>
                             <div class="collage-thumb" style="position:relative;">
-                                <img src="./images/manado4.jpg" alt="Manado 4">
+                                <img src="./images/manado4.jpg" alt="Manado 4" loading="lazy">
                                 <!-- "+36 more" overlay on last thumb -->
                                 <div class="collage-more collage-more-blue">
                                     +36
@@ -562,18 +247,18 @@
                     <div class="album-collage album-collage-green">
                         <!-- Main large photo -->
                         <div class="collage-main">
-                            <img src="./images/tomohon1.jpg" alt="Tomohon 1">
+                            <img src="./images/1.jpg" alt="Tomohon 1" loading="lazy">
                         </div>
                         <!-- Right: 3 small photos -->
                         <div class="collage-side">
                             <div class="collage-thumb">
-                                <img src="./images/tomohon2.jpg" alt="Tomohon 2">
+                                <img src="./images/2.jpg" alt="Tomohon 2" loading="lazy">
                             </div>
                             <div class="collage-thumb">
-                                <img src="./images/tomohon3.jpg" alt="Tomohon 3">
+                                <img src="./images/4%20ori.jpg" alt="Tomohon 3" loading="lazy">
                             </div>
                             <div class="collage-thumb" style="position:relative;">
-                                <img src="./images/tomohon4.jpg" alt="Tomohon 4">
+                                <img src="./images/6%20ori.jpg" alt="Tomohon 4" loading="lazy">
                                 <!-- "+36 more" overlay on last thumb -->
                                 <div class="collage-more collage-more-green">
                                     +36
@@ -633,27 +318,16 @@
     </footer>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var cards = document.querySelectorAll('.album-card');
-        cards.forEach(function(card, i) {
-            setTimeout(function() { card.classList.add('animate'); }, 600 + i * 200);
-        });
 
-        var note = document.getElementById('specialNote');
-        note.style.transform = 'translateY(30px)';
-        function checkNote() {
-            var rect = note.getBoundingClientRect();
-            if (rect.top <= window.innerHeight && rect.bottom >= 0 && note.style.opacity !== '1') {
-                note.style.transition = 'opacity 1s ease, transform 1s ease';
-                note.style.opacity = '1';
-                note.style.transform = 'translateY(0)';
-            }
-        }
-        checkNote();
-        window.addEventListener('scroll', checkNote);
-    });
-</script>
-
+<script src="./assets/js/index.js"></script>
+<script src="./assets/js/custom-albums.js"></script>
+<script src="./assets/js/album-delete.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+

@@ -1,0 +1,440 @@
+@keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.15); }
+            70% { transform: scale(1); }
+        }
+        @keyframes floatBg {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-16px); }
+        }
+        @keyframes overlayFadeOut {
+            0%   { opacity:1; transform:scale(1); }
+            100% { opacity:0; transform:scale(1.04); }
+        }
+        @keyframes pulse-ring {
+            0%   { box-shadow: 0 6px 20px rgba(199,111,133,0.5), 0 0 0 0 rgba(199,111,133,0.35); }
+            60%  { box-shadow: 0 6px 20px rgba(199,111,133,0.5), 0 0 0 14px rgba(199,111,133,0); }
+            100% { box-shadow: 0 6px 20px rgba(199,111,133,0.5), 0 0 0 0 rgba(199,111,133,0); }
+        }
+        @keyframes pulse-ring-playing {
+            0%   { box-shadow: 0 6px 24px rgba(189,168,210,0.7), 0 0 0 0 rgba(189,168,210,0.5); }
+            60%  { box-shadow: 0 6px 24px rgba(189,168,210,0.7), 0 0 0 18px rgba(189,168,210,0); }
+            100% { box-shadow: 0 6px 24px rgba(189,168,210,0.7), 0 0 0 0 rgba(189,168,210,0); }
+        }
+        @keyframes floatHeart {
+            0%   { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-70px) scale(0.4); opacity: 0; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        img { max-width: 100%; }
+        button, a, input { touch-action: manipulation; }
+
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .heartbeat { animation: heartbeat 2s infinite; }
+        .heart-decoration {
+            position: fixed;
+            font-size: 24px;
+            color: #C76F85;
+            opacity: 0.6;
+            z-index: -1;
+            animation: float 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+        .burst-heart {
+            position: absolute;
+            font-size: 16px;
+            animation: floatHeart 1.2s ease-out forwards;
+            pointer-events: none;
+        }
+        #music-btn.playing {
+            background: linear-gradient(135deg, #BDA8D2, #C76F85);
+            animation: pulse-ring-playing 1.8s ease-in-out infinite;
+        }
+        #music-btn:hover { transform: scale(1.1); }
+
+        #install-app-btn {
+            position: fixed;
+            left: 24px;
+            bottom: 28px;
+            z-index: 9998;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 999px;
+            color: #fff;
+            background: linear-gradient(135deg, #C76F85, #BDA8D2);
+            box-shadow: 0 8px 24px rgba(199,111,133,0.35);
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+        }
+        #install-app-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(199,111,133,0.45);
+        }
+        #install-app-btn.is-visible { display: inline-flex; }
+
+        #ios-install-tip {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(83, 47, 61, 0.32);
+            backdrop-filter: blur(8px);
+        }
+        #ios-install-tip.is-visible { display: flex; }
+        .ios-install-card {
+            position: relative;
+            width: min(360px, 100%);
+            padding: 30px 26px;
+            border: 1px solid rgba(199,111,133,0.24);
+            border-radius: 22px;
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 18px 60px rgba(122, 74, 88, 0.25);
+            text-align: center;
+        }
+        .ios-install-card h2 {
+            margin: 4px 0 10px;
+            color: #C76F85;
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+        }
+        .ios-install-card p {
+            margin: 0;
+            color: #6b4a56;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        .ios-install-icon {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 8px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            color: #fff;
+            background: linear-gradient(135deg, #C76F85, #BDA8D2);
+            font-family: 'Pacifico', cursive;
+            font-size: 30px;
+            box-shadow: 0 8px 22px rgba(199,111,133,0.3);
+        }
+        #ios-install-close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            color: #C76F85;
+            background: #F8E5E9;
+            cursor: pointer;
+        }
+
+        /* Album card styles */
+        .album-card {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .album-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .album-card-inner {
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+        .album-card-inner:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(199,111,133,0.25);
+        }
+
+        /* Photo collage thumbnail */
+        .album-collage {
+            position: relative;
+            width: 100%;
+            height: 290px;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+            background: linear-gradient(135deg, #fce4ec, #e8d5f0);
+        }
+        .album-collage-blue {
+            background: linear-gradient(135deg, #deeeff, #d5eef0);
+        }
+
+        /* Main large photo - left side */
+        .collage-main {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            width: calc(58% - 12px);
+            bottom: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+            transition: transform 0.4s ease;
+        }
+        .album-card-inner:hover .collage-main { transform: scale(1.03); }
+        .collage-main img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .album-card-inner:hover .collage-main img { transform: scale(1.06); }
+
+        /* Right side - 3 stacked small photos */
+        .collage-side {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            bottom: 8px;
+            width: calc(42% - 16px);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .collage-thumb {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+            transition: transform 0.4s ease;
+            position: relative;
+        }
+        .collage-thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .album-card-inner:hover .collage-thumb { transform: scale(1.03); }
+        .album-card-inner:hover .collage-thumb img { transform: scale(1.07); }
+
+        /* More photos counter overlay */
+        .collage-more {
+            position: absolute;
+            inset: 0;
+            background: rgba(199, 111, 133, 0.72);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            font-family: 'Pacifico', cursive;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(2px);
+        }
+        .collage-more-blue {
+            background: rgba(91, 164, 207, 0.72);
+        }
+        .collage-more span { font-size: 11px; font-family: 'Quicksand', sans-serif; font-weight: 700; margin-top: 2px; }
+
+        /* Location badge overlay on collage */
+        .collage-badge {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            z-index: 5;
+            background: rgba(255,255,255,0.93);
+            backdrop-filter: blur(6px);
+            border-radius: 50px;
+            padding: 5px 14px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #C76F85;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        }
+        .collage-badge-blue { color: #5BA4CF; }
+        .collage-badge-green { color: #4CAF50; }
+        .album-collage-green { background: linear-gradient(135deg, #d4edda, #c8e6c9); }
+        .collage-more-green { background: rgba(76, 175, 80, 0.72); }
+
+        /* Coming soon placeholder grid */
+        .collage-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            color: #9CBFD9;
+        }
+
+        .coming-soon-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .coming-soon-badge {
+            background: linear-gradient(135deg, #5BA4CF, #6DC5C5);
+            color: white;
+            font-family: 'Pacifico', cursive;
+            font-size: 16px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(91,164,207,0.5);
+            letter-spacing: 0.5px;
+        }
+
+        .open-album-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #C76F85, #BDA8D2);
+            color: white;
+            font-family: 'Pacifico', cursive;
+            font-size: 14px;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(199,111,133,0.35);
+            text-decoration: none;
+        }
+        .open-album-btn:hover {
+            box-shadow: 0 6px 22px rgba(199,111,133,0.55);
+            transform: scale(1.04);
+        }
+        .date-box {
+            background: linear-gradient(135deg, #E5A4B3 0%, #BDA8D2 100%);
+            border: 2px solid white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            animation: float 6s infinite ease-in-out;
+        }
+        #password-overlay.fade-out {
+            animation: overlayFadeOut 0.8s forwards;
+        }
+        .button-hover {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .button-hover::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s;
+        }
+        .button-hover:hover::after { left: 100%; }
+
+        @media (max-width: 640px) {
+            #password-overlay {
+                padding: 18px;
+                justify-content: flex-start !important;
+                padding-top: max(46px, env(safe-area-inset-top));
+            }
+            .heart-decoration {
+                font-size: 18px;
+                opacity: 0.35;
+            }
+            .album-collage {
+                height: clamp(210px, 62vw, 270px);
+                border-radius: 14px 14px 0 0;
+            }
+            .collage-main {
+                left: 7px;
+                top: 7px;
+                bottom: 7px;
+                width: calc(58% - 10px);
+            }
+            .collage-side {
+                right: 7px;
+                top: 7px;
+                bottom: 7px;
+                width: calc(42% - 14px);
+                gap: 5px;
+            }
+            .collage-badge {
+                bottom: 10px;
+                left: 10px;
+                max-width: calc(100% - 20px);
+            }
+            .open-album-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+            .album-card .p-6 {
+                padding: 18px;
+            }
+            .album-card .flex.items-center.justify-between {
+                align-items: flex-start;
+                gap: 12px;
+                flex-direction: column;
+            }
+            #music-player {
+                right: 14px !important;
+                bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+                transform: scale(0.9);
+                transform-origin: bottom right;
+            }
+            #install-app-btn {
+                left: 14px;
+                bottom: calc(20px + env(safe-area-inset-bottom));
+                min-height: 42px;
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            #install-app-btn span { display: none; }
+            #install-app-btn {
+                width: 46px;
+                justify-content: center;
+                padding: 0;
+            }
+            #music-player {
+                transform: scale(0.82);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+

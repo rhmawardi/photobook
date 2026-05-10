@@ -1,0 +1,27 @@
+.album-delete-action {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 25;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: linear-gradient(135deg, #d35b76, #a94760);
+    box-shadow: 0 8px 22px rgba(169,71,96,0.28);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.album-delete-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(169,71,96,0.36);
+}
+
+.album-card-inner {
+    position: relative;
+}
