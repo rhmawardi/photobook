@@ -1,4 +1,4 @@
-const CACHE_NAME = 'photobook-v9';
+const CACHE_NAME = 'photobook-v11';
 
 const APP_SHELL = [
   './',
@@ -78,6 +78,8 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
+
 
 
 

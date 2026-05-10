@@ -27,10 +27,15 @@
     }
 
     function uploadCloudImage(src, prefix) {
-        if (!window.PhotoBookCloud) {
-            return Promise.resolve(src);
+        if (!window.PhotoBookCloud || !window.PhotoBookCloud.isConfigured()) {
+            return Promise.reject(new Error('GitHub Sync belum aktif. Isi token dan repo di cloud-config.js atau tombol GitHub Sync.'));
         }
-        return window.PhotoBookCloud.uploadDataUrl(src, prefix);
+        return window.PhotoBookCloud.uploadDataUrl(src, prefix).then(function(uploadedSrc) {
+            if (!uploadedSrc || uploadedSrc.indexOf('data:') === 0) {
+                throw new Error('Upload ke GitHub gagal. Foto lama tetap dipakai.');
+            }
+            return uploadedSrc;
+        });
     }
 
     function getCardParts(card) {
@@ -310,10 +315,10 @@
                 }
                 markEdited(card, edits[index]);
                 input.value = '';
-                showToast('Foto berhasil diganti');
+                showToast('Foto berhasil diupload ke GitHub');
             }).catch(function(error) {
                 console.error(error);
-                alert('Foto gagal diproses. Coba pilih file gambar lain.');
+                alert(error.message || 'Foto gagal diupload ke GitHub. Foto lama tetap dipakai.');
             });
         }, true);
 
@@ -362,6 +367,7 @@
         bindEvents();
     });
 })();
+
 
 
 
