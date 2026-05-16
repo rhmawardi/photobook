@@ -13,5 +13,7 @@ window.PHOTOBOOK_CLOUD_CONFIG = {
 
     githubDataPath: 'data',
     githubUploadsPath: 'uploads',
-    showGithubSyncButton: true
+    showGithubSyncButton: true,
+    adminPassword: 'rizkyfaikah26'
 };
+

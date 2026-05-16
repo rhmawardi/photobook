@@ -1,7 +1,6 @@
 (function() {
     var albumKey = (location.pathname.split('/').pop() || 'index.html').replace('.html', '') || 'index';
-    var supportedAlbums = ['makassar', 'manado', 'tomohon'];
-    if (supportedAlbums.indexOf(albumKey) === -1) {
+    if (albumKey === 'index') {
         return;
     }
 
@@ -26,15 +25,38 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
     }
 
-    function uploadCloudImage(src, prefix) {
-        if (!window.PhotoBookCloud || !window.PhotoBookCloud.isConfigured()) {
-            return Promise.reject(new Error('GitHub Sync belum aktif. Isi token dan repo di cloud-config.js atau tombol GitHub Sync.'));
-        }
-        return window.PhotoBookCloud.uploadDataUrl(src, prefix).then(function(uploadedSrc) {
-            if (!uploadedSrc || uploadedSrc.indexOf('data:') === 0) {
-                throw new Error('Upload ke GitHub gagal. Foto lama tetap dipakai.');
+    function uploadToLocal(src, prefix) {
+        return fetch('upload-image.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ image: src, prefix: prefix })
+        }).then(function(res) { return res.json(); }).then(function(data) {
+            if (data.success && data.path) {
+                return data.path;
             }
-            return uploadedSrc;
+            return null;
+        }).catch(function() {
+            return null;
+        });
+    }
+
+    function uploadCloudImage(src, prefix) {
+        // 1. Try local PHP upload first (saves to images/ folder)
+        return uploadToLocal(src, prefix).then(function(localPath) {
+            if (localPath) { return localPath; }
+            // 2. Try GitHub cloud upload
+            if (window.PhotoBookCloud && window.PhotoBookCloud.isConfigured()) {
+                return window.PhotoBookCloud.uploadDataUrl(src, prefix).then(function(uploadedSrc) {
+                    if (!uploadedSrc || uploadedSrc.indexOf('data:') === 0) {
+                        return src;
+                    }
+                    return uploadedSrc;
+                }).catch(function() {
+                    return src;
+                });
+            }
+            // 3. Fallback: store the data URL directly in localStorage
+            return src;
         });
     }
 
@@ -315,10 +337,10 @@
                 }
                 markEdited(card, edits[index]);
                 input.value = '';
-                showToast('Foto berhasil diupload ke GitHub');
+                showToast('Foto berhasil diganti');
             }).catch(function(error) {
                 console.error(error);
-                alert(error.message || 'Foto gagal diupload ke GitHub. Foto lama tetap dipakai.');
+                alert(error.message || 'Foto gagal diproses. Coba pilih gambar lain.');
             });
         }, true);
 
@@ -352,6 +374,145 @@
         });
     }
 
+    /* ===== ALBUM INFO EDITING ===== */
+    var INFO_KEY = 'photobook.albumInfo.v1.' + albumKey;
+
+    function getAlbumInfo() {
+        try { return JSON.parse(localStorage.getItem(INFO_KEY) || '{}'); }
+        catch (e) { return {}; }
+    }
+
+    function saveAlbumInfo(info) {
+        if (window.PhotoBookCloud) {
+            window.PhotoBookCloud.saveJson(INFO_KEY, info);
+            return;
+        }
+        localStorage.setItem(INFO_KEY, JSON.stringify(info));
+    }
+
+    function getInfoElements() {
+        return {
+            pageTitle: document.querySelector('title'),
+            h1: document.querySelector('header h1'),
+            dateBoxTitle: document.querySelector('.date-box h2'),
+            dateBoxDate: document.querySelector('.date-box p'),
+            noteText: document.querySelector('#specialNote p.text-gray-700, #specialNote .text-gray-700.text-center')
+        };
+    }
+
+    function applyAlbumInfo() {
+        var info = getAlbumInfo();
+        var els = getInfoElements();
+        if (info.title) {
+            if (els.h1) els.h1.textContent = info.title;
+            if (els.pageTitle) els.pageTitle.textContent = 'Rizky ♡ Faikah — ' + info.title;
+            if (els.dateBoxTitle) {
+                var emoji = els.dateBoxTitle.textContent.match(/^[\u{1F000}-\u{1FFFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]\s?/u);
+                els.dateBoxTitle.textContent = (emoji ? emoji[0] : '📸 ') + info.title;
+            }
+        }
+        if (info.date !== undefined && els.dateBoxDate) {
+            els.dateBoxDate.textContent = info.date;
+        }
+        if (info.note !== undefined && els.noteText) {
+            // Preserve the heart icon span
+            var heartSpan = els.noteText.querySelector('.heart-icon');
+            els.noteText.textContent = info.note;
+            if (heartSpan) els.noteText.appendChild(document.createTextNode(' '));
+            if (heartSpan) els.noteText.appendChild(heartSpan);
+        }
+    }
+
+    function ensureAlbumInfoUI() {
+        if (document.getElementById('album-info-edit-btn')) return;
+
+        // Floating edit button
+        var btn = document.createElement('button');
+        btn.id = 'album-info-edit-btn';
+        btn.type = 'button';
+        btn.className = 'album-info-edit-floating';
+        btn.innerHTML = '<i class="fas fa-pen-to-square"></i> Edit Album';
+        btn.style.cssText = 'position:fixed;left:24px;top:24px;z-index:9997;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border:0;border-radius:999px;color:#fff;background:linear-gradient(135deg,#C76F85,#BDA8D2);box-shadow:0 8px 24px rgba(199,111,133,0.3);font-family:Quicksand,sans-serif;font-size:13px;font-weight:900;cursor:pointer;transition:transform .2s,box-shadow .2s;';
+        document.body.appendChild(btn);
+
+        // Modal
+        var info = getAlbumInfo();
+        var els = getInfoElements();
+        var currentTitle = info.title || (els.h1 ? els.h1.textContent : '');
+        var currentDate = info.date || (els.dateBoxDate ? els.dateBoxDate.textContent : '');
+        var currentNote = info.note || (els.noteText ? els.noteText.textContent.replace(/\s*[❤♥]\s*$/, '').trim() : '');
+
+        document.body.insertAdjacentHTML('beforeend', [
+            '<div id="album-info-modal" class="static-caption-modal" aria-hidden="true">',
+            '  <div class="static-caption-dialog" role="dialog" aria-modal="true" aria-labelledby="album-info-modal-title">',
+            '    <div class="static-caption-head">',
+            '      <div><h2 id="album-info-modal-title">Edit Album Info</h2><p>Ubah nama, tanggal, dan deskripsi album.</p></div>',
+            '      <button type="button" class="static-caption-close" data-close-album-info><i class="fas fa-times"></i></button>',
+            '    </div>',
+            '    <form id="album-info-form" class="static-caption-body">',
+            '      <div class="static-caption-field"><label for="album-info-title">Nama Album</label><input id="album-info-title" type="text" maxlength="80" value="' + escapeAttr(currentTitle) + '"></div>',
+            '      <div class="static-caption-field"><label for="album-info-date">Tanggal Album</label><input id="album-info-date" type="text" maxlength="80" value="' + escapeAttr(currentDate) + '" placeholder="Contoh: 16 February 2025"></div>',
+            '      <div class="static-caption-field"><label for="album-info-note">Deskripsi / Catatan Album</label><textarea id="album-info-note" maxlength="500">' + escapeAttr(currentNote) + '</textarea></div>',
+            '      <div class="static-caption-actions"><button type="button" class="static-caption-cancel" data-close-album-info>Batal</button><button type="submit" class="static-caption-save"><i class="fas fa-save"></i> Simpan Info</button></div>',
+            '    </form>',
+            '  </div>',
+            '</div>'
+        ].join(''));
+    }
+
+    function escapeAttr(str) {
+        return String(str || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function openAlbumInfoModal() {
+        var info = getAlbumInfo();
+        var els = getInfoElements();
+        document.getElementById('album-info-title').value = info.title || (els.h1 ? els.h1.textContent : '');
+        document.getElementById('album-info-date').value = info.date || (els.dateBoxDate ? els.dateBoxDate.textContent : '');
+        var noteEl = els.noteText;
+        document.getElementById('album-info-note').value = info.note || (noteEl ? noteEl.textContent.replace(/\s*[❤♥]\s*$/, '').trim() : '');
+        var modal = document.getElementById('album-info-modal');
+        modal.classList.add('is-visible');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeAlbumInfoModal() {
+        var modal = document.getElementById('album-info-modal');
+        if (!modal) return;
+        modal.classList.remove('is-visible');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    function bindAlbumInfoEvents() {
+        document.addEventListener('click', function(event) {
+            if (event.target.closest('#album-info-edit-btn')) {
+                event.preventDefault();
+                openAlbumInfoModal();
+                return;
+            }
+            if (event.target.closest('[data-close-album-info]')) {
+                event.preventDefault();
+                closeAlbumInfoModal();
+            }
+        });
+
+        document.addEventListener('submit', function(event) {
+            if (!event.target.matches('#album-info-form')) return;
+            event.preventDefault();
+            var info = {
+                title: document.getElementById('album-info-title').value.trim(),
+                date: document.getElementById('album-info-date').value.trim(),
+                note: document.getElementById('album-info-note').value.trim()
+            };
+            saveAlbumInfo(info);
+            applyAlbumInfo();
+            closeAlbumInfoModal();
+            showToast('Info album berhasil disimpan');
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.photo-card').forEach(function(card, index) {
             enhanceCard(card, index + 1);
@@ -365,6 +526,16 @@
         }
         ensureModal();
         bindEvents();
+
+        // Album info editing
+        ensureAlbumInfoUI();
+        applyAlbumInfo();
+        bindAlbumInfoEvents();
+        if (window.PhotoBookCloud) {
+            window.PhotoBookCloud.syncLocalWithCloud(INFO_KEY, {}, function() {
+                applyAlbumInfo();
+            });
+        }
     });
 })();
 

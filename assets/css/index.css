@@ -279,8 +279,11 @@
         }
         .collage-badge-blue { color: #5BA4CF; }
         .collage-badge-green { color: #4CAF50; }
+        .collage-badge-yellow { color: #F5B041; }
         .album-collage-green { background: linear-gradient(135deg, #d4edda, #c8e6c9); }
+        .album-collage-yellow { background: linear-gradient(135deg, #fcf3cf, #f9e79f); }
         .collage-more-green { background: rgba(76, 175, 80, 0.72); }
+        .collage-more-yellow { background: rgba(245, 176, 65, 0.72); }
 
         /* Coming soon placeholder grid */
         .collage-placeholder {

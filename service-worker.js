@@ -1,4 +1,4 @@
-const CACHE_NAME = 'photobook-v11';
+const CACHE_NAME = 'photobook-v18';
 
 const APP_SHELL = [
   './',
@@ -10,6 +10,8 @@ const APP_SHELL = [
   './assets/css/index.css',
   './assets/css/custom-albums.css',
   './assets/css/album-delete.css',
+  './assets/css/album-cover.css',
+  './assets/css/admin-mode.css',
   './assets/css/pwa.css',
   './assets/css/static-album-editor.css',
   './assets/js/index.js',
@@ -17,6 +19,8 @@ const APP_SHELL = [
   './assets/js/cloud-storage.js',
   './assets/js/custom-albums.js',
   './assets/js/album-delete.js',
+  './assets/js/album-cover.js',
+  './assets/js/admin-mode.js',
   './assets/js/pwa.js',
   './assets/js/static-album-editor.js',
   './assets/js/tailwind-config.js',
@@ -78,6 +82,9 @@ self.addEventListener('fetch', event => {
     })
   );
 });
+
+
+
 
 
 

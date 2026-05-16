@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/custom-albums.css">
     <link rel="stylesheet" href="./assets/css/album-delete.css">
+    <link rel="stylesheet" href="./assets/css/album-cover.css">
+    <link rel="stylesheet" href="./assets/css/admin-mode.css">
 </head>
 <body class="bg-light-pink font-quicksand">
 
@@ -132,8 +134,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
 
             <!-- Album 1: Makassar -->
-            <div class="album-card" id="albumMakassar">
-                <div class="album-card-inner bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="album-card" id="album-makassar">
+                <div class="album-card-inner bg-white rounded-2xl shadow-xl overflow-hidden relative">
+                    <button type="button" class="album-delete-action admin-only" data-delete-album="makassar" title="Hapus Album"><i class="fas fa-trash"></i></button>
 
                     <!-- Photo Collage Thumbnail -->
                     <div class="album-collage">
@@ -186,8 +189,9 @@
             </div>
 
             <!-- Album 2: Manado -->
-            <div class="album-card" id="albumManado">
-                <div class="album-card-inner bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="album-card" id="album-manado">
+                <div class="album-card-inner bg-white rounded-2xl shadow-xl overflow-hidden relative">
+                    <button type="button" class="album-delete-action admin-only" data-delete-album="manado" title="Hapus Album"><i class="fas fa-trash"></i></button>
 
                     <!-- Photo Collage Thumbnail -->
                     <div class="album-collage album-collage-blue">
@@ -240,8 +244,9 @@
             </div>
 
             <!-- Album 3: Tomohon -->
-            <div class="album-card" id="albumTomohon">
-                <div class="album-card-inner bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="album-card" id="album-tomohon">
+                <div class="album-card-inner bg-white rounded-2xl shadow-xl overflow-hidden relative">
+                    <button type="button" class="album-delete-action admin-only" data-delete-album="tomohon" title="Hapus Album"><i class="fas fa-trash"></i></button>
 
                     <!-- Photo Collage Thumbnail -->
                     <div class="album-collage album-collage-green">
@@ -322,8 +327,13 @@
 <script src="./assets/js/index.js"></script>
 <script src="./assets/js/custom-albums.js"></script>
 <script src="./assets/js/album-delete.js"></script>
+<script src="./assets/js/album-cover.js"></script>
+<script src="./assets/js/static-album-details.js"></script>
+<script src="./assets/js/admin-mode.js"></script>
 </body>
 </html>
+
+
 
 
 

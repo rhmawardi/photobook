@@ -1,0 +1,186 @@
+body:not(.admin-mode) .admin-only,
+body:not(.admin-mode) .custom-album-toolbar,
+body:not(.admin-mode) .album-delete-action,
+body:not(.admin-mode) .static-photo-editor-actions,
+body:not(.admin-mode) .custom-gallery-actions,
+body:not(.admin-mode) .custom-photo-actions,
+body:not(.admin-mode) .custom-album-delete-btn,
+body:not(.admin-mode) .album-cover-action,
+body:not(.admin-mode) .album-cover-edit-btn,
+body:not(.admin-mode) .static-album-edit-action,
+body:not(.admin-mode) .album-info-edit-floating,
+body:not(.admin-mode) .custom-album-edit-info-btn {
+    display: none !important;
+}
+
+.album-delete-action {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 50;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff6b81;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(255, 107, 129, 0.4);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.album-delete-action:hover {
+    transform: scale(1.15);
+    background: #e84057;
+}
+
+.album-card-inner { position: relative; }
+
+#admin-mode-button {
+    position: fixed;
+    right: 24px;
+    top: 24px;
+    z-index: 9998;
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    color: #C76F85;
+    background: rgba(255,255,255,0.88);
+    box-shadow: 0 6px 18px rgba(199,111,133,0.18);
+    cursor: pointer;
+    opacity: 0.78;
+    transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#admin-mode-button:hover,
+body.admin-mode #admin-mode-button {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(199,111,133,0.26);
+}
+
+body.admin-mode #admin-mode-button {
+    color: #fff;
+    background: linear-gradient(135deg, #C76F85, #BDA8D2);
+}
+
+#admin-mode-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100006;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(83, 47, 61, 0.36);
+    backdrop-filter: blur(8px);
+}
+
+#admin-mode-modal.is-visible {
+    display: flex;
+}
+
+.admin-mode-card {
+    width: min(360px, 100%);
+    border: 1px solid rgba(199,111,133,0.2);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 24px 70px rgba(83,47,61,0.28);
+    padding: 24px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.admin-mode-card h2 {
+    margin: 0 0 8px;
+    color: #C76F85;
+    font-family: 'Pacifico', cursive;
+    font-size: 25px;
+}
+
+.admin-mode-card p {
+    margin: 0 0 16px;
+    color: #7a4a58;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.admin-mode-card label {
+    display: block;
+    margin-bottom: 7px;
+    color: #704757;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.admin-mode-card input {
+    width: 100%;
+    border: 1.5px solid #E5A4B3;
+    border-radius: 14px;
+    outline: none;
+    padding: 12px 14px;
+    color: #714556;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 800;
+}
+
+.admin-mode-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.admin-mode-actions button {
+    min-height: 40px;
+    border: 0;
+    border-radius: 999px;
+    padding: 9px 15px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.admin-mode-save {
+    color: #fff;
+    background: linear-gradient(135deg, #C76F85, #BDA8D2);
+}
+
+.admin-mode-cancel,
+.admin-mode-logout {
+    color: #C76F85;
+    background: #F8E5E9;
+}
+
+.admin-mode-error {
+    display: none;
+    margin-top: 10px;
+    color: #d35b76;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.admin-mode-error.is-visible {
+    display: block;
+}
+
+@media (max-width: 640px) {
+    #admin-mode-button {
+        right: 14px;
+        top: 14px;
+    }
+
+    .admin-mode-actions button {
+        width: 100%;
+    }
+}
+
+
